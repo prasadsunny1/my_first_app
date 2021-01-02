@@ -12,22 +12,21 @@ class HomePage extends StatelessWidget {
           future: getMovies(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return Text(snapshot.data.toString());
+              return ListView.builder(
+                itemCount: (snapshot.data['results'] as List).length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title:
+                        Text(snapshot.data['results'][index]['original_title']),
+                  );
+                },
+              );
             } else {
               return Center(
                 child: CircularProgressIndicator(),
               );
             }
           },
-        )
-
-        // ListView.builder(
-        //   itemBuilder: (context, index) {
-        //     return ListTile(
-        //       title: Text('Index' + " = " + index.toString()),
-        //     );
-        //   },
-        // ),
-        );
+        ));
   }
 }
