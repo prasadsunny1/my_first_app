@@ -7,6 +7,13 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Home page'),
       ),
+      body: ListView.builder(
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text('Index' + " = " + index.toString()),
+          );
+        },
+      ),
     );
   }
 }
